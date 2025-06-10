@@ -66,7 +66,7 @@ const displayMensagemVitoria = document.getElementById('mensagem-vitoria'),
 // --- Estado e Configuração do Jogo ---
 let estadoJogo = {};
 
-const DIAS_PARA_VENCER = 20; // CONDIÇÃO DE VITÓRIA
+
 const DIAS_PARA_MORRER_FOME_SEDE = 5;
 const MORAL_INICIAL = 80;
 const MUDANCA_MORAL_FOME_SEDE = -5;
@@ -369,7 +369,7 @@ function inicializarJogo(dificuldade) {
         marcadoDoenteTemporariamente: null,
         idPersonagemExpedicao: null,
         diaRetornoExpedicao: null,
-        duracaoExpedicaoDias: Math.floor(Math.random() * 3) + 2,
+        // REMOVED: duracaoExpedicaoDias foi removido daqui para ser dinâmico.
         dificuldade: dificuldade,
         indicePaginaAtualDiario: 0,
         ordemPaginasDiario: ['distribuicao', 'expedicao', 'fimDia'],
@@ -383,7 +383,6 @@ function inicializarJogo(dificuldade) {
         case 'facil':
             estadoJogo.comida = 25;
             estadoJogo.agua = 25;
-            estadoJogo.duracaoExpedicaoDias = Math.floor(Math.random() * 2) + 2;
             break;
         case 'medio':
             estadoJogo.comida = 18;
@@ -392,7 +391,6 @@ function inicializarJogo(dificuldade) {
         case 'dificil':
             estadoJogo.comida = 12;
             estadoJogo.agua = 12;
-            estadoJogo.duracaoExpedicaoDias = Math.floor(Math.random() * 2) + 3;
             break;
     }
 
@@ -701,8 +699,10 @@ function iniciarExpedicao() {
             personagem.emExpedicao = true;
             estadoJogo.idPersonagemExpedicao = idPersonagem;
             const diaAtualParaExpedicao = estadoJogo.dia === 0 ? 1 : estadoJogo.dia;
-            estadoJogo.diaRetornoExpedicao = diaAtualParaExpedicao + estadoJogo.duracaoExpedicaoDias;
-            registrarAtividadeEvento(`${personagem.nome} partiu em uma expedição! Retorna no dia ${estadoJogo.diaRetornoExpedicao}.`);
+            // MODIFICADO: Calcula uma duração aleatória entre 3 e 7 dias para cada expedição.
+            const duracaoExpedicao = Math.floor(Math.random() * 5) + 3; // (7 - 3 + 1) = 5
+            estadoJogo.diaRetornoExpedicao = diaAtualParaExpedicao + duracaoExpedicao;
+            registrarAtividadeEvento(`${personagem.nome} partiu em uma expedição de ${duracaoExpedicao} dias! Retorna no dia ${estadoJogo.diaRetornoExpedicao}.`);
         }
     } else {
         registrarAtividadeEvento("Ninguém foi enviado em expedição neste dia.");
@@ -726,14 +726,6 @@ function avancarParaProximoDia() {
         estadoJogo.dia++;
     }
 
-    // LÓGICA DE VITÓRIA
-    if (estadoJogo.dia > DIAS_PARA_VENCER && !estadoJogo.fimDeJogo) {
-        estadoJogo.fimDeJogo = true;
-        displayMensagemVitoria.textContent = "Contra todas as probabilidades, você e sua família sobreviveram ao pior do apocalipse. Um novo começo os aguarda.";
-        displayContagemFinalDiasVitoria.textContent = estadoJogo.dia - 1;
-        mostrarTela('tela-vitoria');
-        return; // Termina a função aqui para mostrar a tela de vitória
-    }
 
     const jogoPodeContinuar = processarConsequenciasInicioDia();
     if (!jogoPodeContinuar) {
