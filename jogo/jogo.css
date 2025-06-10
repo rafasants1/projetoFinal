@@ -1,0 +1,69 @@
+h3 {
+    font-family: 'Special Elite', cursive;
+    color: #ff8c6b;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .hud-jogo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background-color: #1f2937;
+      border-radius: 0.5rem;
+  }
+  .hud-jogo h2 {
+      font-size: 1.875rem;
+      color: #f59e0b;
+      margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+      .hud-jogo { flex-direction: row; }
+  }
+  .secao-jogo {
+    margin-bottom: 1rem;
+  }
+  #lista-inventario {
+    text-align: left;
+    max-height: 7rem;
+    overflow-y: auto;
+    font-size: 0.875rem;
+    list-style: none;
+    padding: 0;
+  }
+  #lista-inventario li {
+    color: #c0c0c0;
+    padding: 3px 5px;
+    margin: 2px 0;
+    border-bottom: 1px dashed #666;
+  }
+  #display-personagens {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    #display-personagens { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  .cartao-personagem {
+    background-color: #4a4a4a; padding: 10px; border-radius: 6px;
+    border-left: 5px solid #ff8c6b; text-align: left; color: #d0d0d0;
+  }
+  .cartao-personagem p { margin: 2px 0; font-size: 0.9em; }
+  .cartao-personagem h4 { color: #f0e0d0; font-size: 1.1em; font-weight: bold; }
+  .cartao-personagem .status-saudavel { color: #4ade80; }
+  .cartao-personagem .moral-alta { color: #a3e635; }
+  
+  #log-eventos {
+    text-align: left; padding: 15px; background-color: #f5e8c8; color: #4a3b2a;
+    border: 2px dashed #a08464; border-radius: 6px; height: 160px;
+    overflow-y: auto; margin-bottom: 15px; font-size: 0.95em;
+    line-height: 1.6;
+  }
+  #container-botoes-acao {
+    margin-top: auto;
+    padding-top: 1rem;
+  }

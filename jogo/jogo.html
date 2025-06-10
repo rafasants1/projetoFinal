@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60 Segundos no Abrigo - Jogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="jogo.css">
+</head>
+<body>
+    <div id="tela-jogo" class="tela">
+        <div class="conteudo-tela">
+            <div class="hud-jogo">
+                <h2>Dia: <span id="contador-dias">1</span></h2>
+                <div class="display-recurso">Comida: <span id="contador-comida">18</span></div>
+                <div class="display-recurso">Água: <span id="contador-agua">18</span></div>
+            </div>
+            <div class="secao-jogo">
+                <h3>Inventário</h3>
+                <ul id="lista-inventario">
+                    <li>- Machado</li>
+                    <li>- Rádio Portátil</li>
+                    <li>- Kit Médico</li>
+                </ul>
+            </div>
+            <div class="secao-jogo">
+                <h3>Membros da Família</h3>
+                <div id="display-personagens">
+                    <div class="cartao-personagem">
+                        <h4>Ted (Pai)</h4>
+                        <p>Status: <span class="status-saudavel">Saudável</span></p>
+                        <p>Moral: <span class="moral-alta">80/100</span></p>
+                    </div>
+                     <div class="cartao-personagem">
+                        <h4>Dolores (Mãe)</h4>
+                        <p>Status: <span class="status-saudavel">Saudável</span></p>
+                        <p>Moral: <span class="moral-alta">80/100</span></p>
+                    </div>
+                </div>
+            </div>
+            <h3>Diário do Abrigo</h3>
+            <div id="log-eventos">
+                <p>Dia 1: O abrigo está selado. A água e a comida são limitadas. Temos que sobreviver.</p>
+            </div>
+        </div>
+        <div id="container-botoes-acao">
+             <button id="botao-abrir-diario">Diário 📖</button>
+        </div>
+    </div>
+</body>
+</html>
