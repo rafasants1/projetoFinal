@@ -39,13 +39,14 @@ function app() {
     ui.elementosDOM.botaoReiniciarJogo.addEventListener('click', () => ui.mostrarTela('tela-splash'));
     ui.elementosDOM.botaoJogarNovamenteVitoria.addEventListener('click', () => ui.mostrarTela('tela-splash'));
 
-    // --- Listeners da Lógica do Jogo ---
-    ui.elementosDOM.botaoAbrirDiario.addEventListener('click', () => {
-        // Aqui você adicionaria a lógica para abrir o diário, que também pode ser modularizada
-        console.log("Abrindo diário...");
-        // Temporariamente, vamos direto para o próximo dia para teste
-        gameLogic.avancarParaProximoDia();
-    });
+// --- Listeners da Lógica do Jogo ---
+ui.elementosDOM.botaoAbrirDiario.addEventListener('click', () => {
+    // Código correto: Mostra a tela do modal do diário
+    ui.mostrarTela('modal-diario-acoes');
+
+    // Futuramente, você precisará de uma função para preencher o diário
+    // com os dados do dia atual.
+});
 
     // Estado inicial da aplicação
     ui.mostrarTela('tela-splash');
