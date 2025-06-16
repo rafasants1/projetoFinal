@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>60 Segundos no Abrigo</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -44,15 +46,15 @@
             <h2>Escolha a Dificuldade</h2>
             <div class="opcoes-dificuldade">
                 <button class="botao-dificuldade" data-difficulty="facil">
-                    <img src="img/maya.png" alt="Maya - Fácil">
+                    <img src="https://placehold.co/128x128/4CAF50/FFFFFF?text=Fácil" alt="Maya - Fácil">
                     <span>Fácil</span>
                 </button>
                 <button class="botao-dificuldade" data-difficulty="medio">
-                    <img src="img/sarajane.png" alt="Sarajane - Médio">
+                    <img src="https://placehold.co/128x128/FFC107/FFFFFF?text=Médio" alt="Sarajane - Médio">
                     <span>Médio</span>
                 </button>
                 <button class="botao-dificuldade" data-difficulty="dificil">
-                    <img src="img/lobinho.png" alt="Lobinho - Difícil">
+                    <img src="https://placehold.co/128x128/F44336/FFFFFF?text=Difícil" alt="Lobinho - Difícil">
                     <span>Difícil</span>
                 </button>
             </div>
@@ -60,7 +62,7 @@
         </div>
     </div>
 
-    <div id="tela-jogo" class="tela">
+    <div id="tela-jogo" class="tela oculto">
         <div class="conteudo-tela">
             <div class="hud-jogo">
                 <h2>Dia: <span id="contador-dias">1</span></h2>
@@ -156,7 +158,7 @@
         <button id="botao-jogar-novamente-vitoria">Jogar Novamente</button>
     </div>
 
-    <script src="game.js"></script>
+    <script type="module" src="js/main.js"></script>
 
 </body>
 </html>
