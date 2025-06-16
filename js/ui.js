@@ -29,6 +29,13 @@ export const elementosDOM = {
     botaoReiniciarJogo: document.getElementById('botao-reiniciar-jogo'),
     botaoJogarNovamenteVitoria: document.getElementById('botao-jogar-novamente-vitoria'),
     botaoAbrirDiario: document.getElementById('botao-abrir-diario'),
+    botaoContinuarResultado: document.getElementById('botao-continuar-resultado'),
+    
+    // --- ADIÇÃO DOS BOTÕES DO DIÁRIO ---
+    botaoDiarioFimDia: document.getElementById('botao-diario-fim-dia'),
+    botaoDiarioAnterior: document.getElementById('botao-diario-anterior'),
+    botaoDiarioProximo: document.getElementById('botao-diario-proximo'),
+
     // Displays HUD
     displayContadorDias: document.getElementById('contador-dias'),
     displayContadorComida: document.getElementById('contador-comida'),
@@ -43,7 +50,6 @@ export const elementosDOM = {
     placeholderImagemEvento: document.getElementById('placeholder-imagem-evento'),
     displayTituloResultado: document.getElementById('titulo-resultado'),
     displayTextoResultado: document.getElementById('texto-resultado'),
-    botaoContinuarResultado: document.getElementById('botao-continuar-resultado'),
     displayContagemFinalDias: document.getElementById('contagem-final-dias'),
     displayMensagemFimJogo: document.getElementById('mensagem-fim-de-jogo'),
     displayMensagemVitoria: document.getElementById('mensagem-vitoria'),

@@ -2,6 +2,7 @@
 import * as ui from './ui.js';
 import * as state from './state.js';
 import * as gameLogic from './gameLogic.js';
+import * as diary from './diary.js'; // IMPORTA O NOVO MÓDULO
 
 /**
  * Ponto de entrada principal do jogo.
@@ -39,16 +40,21 @@ function app() {
     ui.elementosDOM.botaoReiniciarJogo.addEventListener('click', () => ui.mostrarTela('tela-splash'));
     ui.elementosDOM.botaoJogarNovamenteVitoria.addEventListener('click', () => ui.mostrarTela('tela-splash'));
 
-// --- Listeners da Lógica do Jogo ---
-ui.elementosDOM.botaoAbrirDiario.addEventListener('click', () => {
-    // Código correto: Mostra a tela do modal do diário
-    ui.mostrarTela('modal-diario-acoes');
-    gameLogic.avancarParaProximoDia();
+    // --- Listeners da Lógica do Jogo ---
 
+    // CHAMA A FUNÇÃO CORRETA PARA ABRIR O DIÁRIO
+    ui.elementosDOM.botaoAbrirDiario.addEventListener('click', () => {
+        diary.abrirEAtualizarDiario();
+    });
+    
+    // ADICIONA LISTENERS PARA A NAVEGAÇÃO DO DIÁRIO
+    ui.elementosDOM.botaoDiarioProximo.addEventListener('click', diary.proximaPagina);
+    ui.elementosDOM.botaoDiarioAnterior.addEventListener('click', diary.paginaAnterior);
 
-    // Futuramente, você precisará de uma função para preencher o diário
-    // com os dados do dia atual.
-});
+    ui.elementosDOM.botaoDiarioFimDia.addEventListener('click', () => {
+        ui.elementosDOM.modalDiarioAcoes.classList.add('oculto');
+        gameLogic.avancarParaProximoDia();
+    });
 
     // Estado inicial da aplicação
     ui.mostrarTela('tela-splash');
