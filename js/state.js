@@ -1,5 +1,5 @@
 // js/state.js
-import { PERSONAGENS_INICIAIS, MORAL_INICIAL, TODOS_ITENS_POSSIVEIS, NUM_ITENS_INICIAIS, MORAL_MINIMA, MORAL_MAXIMA } from './constants.js';
+import { PERSONAGENS_INICIAIS, MORAL_INICIAL, TODOS_ITENS_POSSIVEIS, NUM_ITENS_INICIAIS, MORAL_MINIMA, MORAL_MAXIMA } from './constant.js';
 
 // A variável de estado é interna ao módulo.
 let estadoJogo = {};
