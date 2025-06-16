@@ -43,6 +43,8 @@ function app() {
 ui.elementosDOM.botaoAbrirDiario.addEventListener('click', () => {
     // Código correto: Mostra a tela do modal do diário
     ui.mostrarTela('modal-diario-acoes');
+    gameLogic.avancarParaProximoDia();
+
 
     // Futuramente, você precisará de uma função para preencher o diário
     // com os dados do dia atual.
