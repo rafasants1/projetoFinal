@@ -49,7 +49,45 @@ function popularPaginaDistribuicao() {
             const id = e.target.dataset.personagemId;
             const recurso = e.target.dataset.recurso;
             state.atualizarSelecaoDistribuicao(id, recurso, e.target.checked);
-            // Re-renderiza para atualizar contagem de recursos se necessário no futuro
+        });
+    });
+}
+
+/**
+ * Popula a página de expedição com os personagens e radio buttons.
+ */
+function popularPaginaExpedicao() {
+    const { personagens, selecoesTemporariasDiario } = state.getEstado();
+    const container = document.getElementById('container-personagens-exp-diario');
+    container.innerHTML = ''; // Limpa o container
+
+    const expedicaoJaEnviada = state.getEstado().idPersonagemExpedicao !== null;
+
+    if (expedicaoJaEnviada) {
+        container.innerHTML = `<p>Uma expedição já foi enviada. Aguarde o retorno.</p>`;
+        return;
+    }
+
+    personagens.forEach(p => {
+        if (p.vivo) {
+            const divPersonagem = document.createElement('div');
+            divPersonagem.className = 'cartao-exp-personagem';
+            const selecionado = selecoesTemporariasDiario.expedicao === p.id ? 'checked' : '';
+            
+            divPersonagem.innerHTML = `
+                <label>
+                    <input type="radio" name="personagem-expedicao" class="form-radio" value="${p.id}" ${selecionado}>
+                    ${p.nome} - Status: ${p.status}
+                </label>
+            `;
+            container.appendChild(divPersonagem);
+        }
+    });
+
+    // Adiciona os event listeners para os radio buttons
+    container.querySelectorAll('.form-radio').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            state.atualizarSelecaoExpedicao(e.target.value);
         });
     });
 }
@@ -76,9 +114,11 @@ function mostrarPaginaAtual() {
         span.textContent = estado.dia;
     });
 
-    // Popula a página de distribuição se ela for a página ativa
+    // Popula a página ativa
     if (idPaginaAtual === 'pagina-diario-distribuicao') {
         popularPaginaDistribuicao();
+    } else if (idPaginaAtual === 'pagina-diario-expedicao') {
+        popularPaginaExpedicao();
     }
 
     // Lógica para habilitar/desabilitar botões de navegação

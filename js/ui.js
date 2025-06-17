@@ -30,12 +30,9 @@ export const elementosDOM = {
     botaoJogarNovamenteVitoria: document.getElementById('botao-jogar-novamente-vitoria'),
     botaoAbrirDiario: document.getElementById('botao-abrir-diario'),
     botaoContinuarResultado: document.getElementById('botao-continuar-resultado'),
-    
-    // --- ADIÇÃO DOS BOTÕES DO DIÁRIO ---
     botaoDiarioFimDia: document.getElementById('botao-diario-fim-dia'),
     botaoDiarioAnterior: document.getElementById('botao-diario-anterior'),
     botaoDiarioProximo: document.getElementById('botao-diario-proximo'),
-
     // Displays HUD
     displayContadorDias: document.getElementById('contador-dias'),
     displayContadorComida: document.getElementById('contador-comida'),
@@ -43,6 +40,7 @@ export const elementosDOM = {
     displayPersonagens: document.getElementById('display-personagens'),
     displayListaInventario: document.getElementById('lista-inventario'),
     displayLogEventos: document.getElementById('log-eventos'),
+    displayTransicaoDia: document.getElementById('display-transicao-dia'), // <-- ADICIONADO
     // ... e assim por diante para todos os outros elementos.
     displayTituloEvento: document.getElementById('titulo-evento'),
     displayDescricaoEvento: document.getElementById('descricao-evento'),

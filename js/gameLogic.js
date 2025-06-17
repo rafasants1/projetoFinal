@@ -2,7 +2,7 @@
 import * as state from './state.js';
 import * as ui from './ui.js';
 import { eventos } from './events.js';
-import { DIAS_PARA_MORRER_FOME_SEDE, MUDANCA_MORAL_MORTE_FAMILIA } from './constants.js';
+import { DIAS_PARA_MORRER_FOME_SEDE, MUDANCA_MORAL_MORTE_FAMILIA, DURACAO_EXPEDICAO_DIAS } from './constants.js';
 
 function registrarLog(mensagem) {
     const dia = state.getEstado().dia;
@@ -28,8 +28,7 @@ function aplicarDistribuicaoSuprimentos() {
 
     if (comidaConsumida > estado.comida || aguaConsumida > estado.agua) {
         registrarLog("Tentativa de distribuir mais recursos do que o disponível. Ação cancelada.");
-        // O ideal seria mostrar um erro para o usuário aqui.
-        return; // Cancela a distribuição
+        return; 
     }
 
     // Deduz do estoque
@@ -42,14 +41,12 @@ function aplicarDistribuicaoSuprimentos() {
     personagens.forEach(p => {
         if (!p.vivo || p.emExpedicao) return;
 
-        // Verifica se comeu
         if (distribuicao[p.id]?.comida) {
             p.diasSemComida = 0;
         } else {
             p.diasSemComida++;
         }
 
-        // Verifica se bebeu
         if (distribuicao[p.id]?.agua) {
             p.diasSemAgua = 0;
         } else {
@@ -57,10 +54,28 @@ function aplicarDistribuicaoSuprimentos() {
         }
     });
 
-    // Limpa as seleções para o próximo dia
     selecoesTemporariasDiario.distribuicao = {};
 }
 
+/**
+ * Inicia uma expedição com base na seleção do diário.
+ */
+function iniciarExpedicao() {
+    const estado = state.getEstado();
+    const idPersonagemEscolhido = estado.selecoesTemporariasDiario.expedicao;
+
+    if (idPersonagemEscolhido) {
+        const personagem = state.findPersonagem(idPersonagemEscolhido);
+        if (personagem && personagem.vivo && !personagem.emExpedicao) {
+            personagem.emExpedicao = true;
+            estado.idPersonagemExpedicao = personagem.id;
+            estado.diaRetornoExpedicao = estado.dia + DURACAO_EXPEDICAO_DIAS;
+            registrarLog(`${personagem.nome} partiu em uma expedição. Retorno esperado no dia ${estado.diaRetornoExpedicao}.`);
+        }
+    }
+    // Limpa a seleção para o próximo dia
+    estado.selecoesTemporariasDiario.expedicao = null;
+}
 
 export function habilitarDiario() {
     ui.elementosDOM.botaoAbrirDiario.disabled = state.getEstado().fimDeJogo;
@@ -79,7 +94,6 @@ function dispararEventoAleatorio() {
     }
 
     const eventosDisponiveis = eventos.filter(evento => {
-        // ... (lógica para filtrar eventos disponíveis)
         return true; 
     });
 
@@ -92,9 +106,7 @@ function dispararEventoAleatorio() {
     const evento = eventosDisponiveis[Math.floor(Math.random() * eventosDisponiveis.length)];
     state.setEventoAtual(evento);
     
-    // Configura e mostra o modal do evento
     ui.elementosDOM.displayTituloEvento.textContent = evento.titulo;
-    // ... (resto da configuração do modal)
     
     ui.elementosDOM.displayEscolhasEvento.innerHTML = '';
     evento.escolhas.forEach(escolha => {
@@ -102,7 +114,6 @@ function dispararEventoAleatorio() {
         botao.textContent = escolha.texto;
         botao.onclick = () => {
             ui.elementosDOM.modalEvento.classList.add('oculto');
-            // Aqui passamos o contexto para a ação do evento
             escolha.acao({
                 state: state,
                 ui: ui,
@@ -117,9 +128,27 @@ function dispararEventoAleatorio() {
 }
 
 function lidarComRetornoExpedicao() {
-    // ... (Lógica do retorno da expedição)
-    // Ao final, chame o próximo passo
-    dispararEventoAleatorio();
+    const estado = state.getEstado();
+    const personagem = state.findPersonagem(estado.idPersonagemExpedicao);
+    if (!personagem) return;
+
+    registrarLog(`${personagem.nome} retornou da expedição!`);
+    personagem.emExpedicao = false;
+    estado.idPersonagemExpedicao = null;
+    estado.diaRetornoExpedicao = null;
+
+    // Lógica simples de sucesso/falha
+    if (Math.random() > 0.3) { // 70% chance de sucesso
+        const comidaEncontrada = Math.floor(Math.random() * 5) + 2;
+        const aguaEncontrada = Math.floor(Math.random() * 5) + 2;
+        estado.comida += comidaEncontrada;
+        estado.agua += aguaEncontrada;
+        registrarLog(`Sucesso! Trouxe ${comidaEncontrada} de comida e ${aguaEncontrada} de água.`);
+        ui.mostrarMensagemResultado('Sucesso na Expedição', `${personagem.nome} retornou com suprimentos!`, dispararEventoAleatorio);
+    } else {
+        registrarLog(`Falha! ${personagem.nome} voltou de mãos vazias e cansado.`);
+        ui.mostrarMensagemResultado('Falha na Expedição', `${personagem.nome} não encontrou nada de útil.`, dispararEventoAleatorio);
+    }
 }
 
 function processarConsequenciasInicioDia() {
@@ -147,29 +176,32 @@ function processarConsequenciasInicioDia() {
 }
 
 export function avancarParaProximoDia() {
-    // 1. Aplica as decisões do diário ANTES de avançar o dia
     aplicarDistribuicaoSuprimentos();
-    // (Futuramente, a lógica para iniciar expedição viria aqui também)
+    iniciarExpedicao();
 
-    // 2. Avança o dia
     if (state.getEstado().dia === 0) {
         state.getEstado().dia = 1;
     } else {
         state.getEstado().dia++;
     }
 
-    // 3. Processa consequências e continua o fluxo
     if (!processarConsequenciasInicioDia()) return;
 
     registrarLog(`--- Início do Dia ${state.getEstado().dia} ---`);
     ui.atualizarInterface(state.getEstado());
 
-    // Mostra transição e depois continua
+    // --- LÓGICA DA TELA DE TRANSIÇÃO ---
+    ui.elementosDOM.displayTransicaoDia.textContent = `Dia ${state.getEstado().dia}`;
+    ui.elementosDOM.telaTransicaoDia.classList.remove('oculto');
+    
     setTimeout(() => {
+        ui.elementosDOM.telaTransicaoDia.classList.add('oculto');
+        
+        // Continua o fluxo normal do jogo após a transição
         if (state.getEstado().idPersonagemExpedicao && state.getEstado().dia >= state.getEstado().diaRetornoExpedicao) {
             lidarComRetornoExpedicao();
         } else {
             dispararEventoAleatorio();
         }
-    }, 1800);
+    }, 2000); // Duração da tela de transição em milissegundos
 }

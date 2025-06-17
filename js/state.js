@@ -71,6 +71,13 @@ export function atualizarSelecaoDistribuicao(idPersonagem, tipoRecurso, selecion
     estadoJogo.selecoesTemporariasDiario.distribuicao[idPersonagem][tipoRecurso] = selecionado;
 }
 
+/**
+ * Registra a seleção de quem vai para a expedição.
+ * @param {string | null} idPersonagem
+ */
+export function atualizarSelecaoExpedicao(idPersonagem) {
+    estadoJogo.selecoesTemporariasDiario.expedicao = idPersonagem;
+}
 
 /**
  * Encontra um personagem pelo ID.

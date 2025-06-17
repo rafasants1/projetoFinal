@@ -6,6 +6,7 @@
 
 // Regras de Sobrevivência
 export const DIAS_PARA_MORRER_FOME_SEDE = 5;
+export const DURACAO_EXPEDICAO_DIAS = 3; // <-- ADICIONADO
 
 // Configurações de Moral
 export const MORAL_INICIAL = 80;
