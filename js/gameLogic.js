@@ -9,6 +9,59 @@ function registrarLog(mensagem) {
     ui.registrarAtividadeEvento(mensagem, dia);
 }
 
+/**
+ * Processa as escolhas de distribuição de suprimentos feitas no diário.
+ */
+function aplicarDistribuicaoSuprimentos() {
+    const estado = state.getEstado();
+    const { selecoesTemporariasDiario, personagens } = estado;
+    const distribuicao = selecoesTemporariasDiario.distribuicao;
+    
+    let comidaConsumida = 0;
+    let aguaConsumida = 0;
+
+    // Calcula o total a ser consumido
+    for (const id in distribuicao) {
+        if (distribuicao[id].comida) comidaConsumida++;
+        if (distribuicao[id].agua) aguaConsumida++;
+    }
+
+    if (comidaConsumida > estado.comida || aguaConsumida > estado.agua) {
+        registrarLog("Tentativa de distribuir mais recursos do que o disponível. Ação cancelada.");
+        // O ideal seria mostrar um erro para o usuário aqui.
+        return; // Cancela a distribuição
+    }
+
+    // Deduz do estoque
+    estado.comida -= comidaConsumida;
+    estado.agua -= aguaConsumida;
+    if (comidaConsumida > 0) registrarLog(`${comidaConsumida} de comida foram distribuídas.`);
+    if (aguaConsumida > 0) registrarLog(`${aguaConsumida} de água foram distribuídas.`);
+
+    // Atualiza o status de cada personagem
+    personagens.forEach(p => {
+        if (!p.vivo || p.emExpedicao) return;
+
+        // Verifica se comeu
+        if (distribuicao[p.id]?.comida) {
+            p.diasSemComida = 0;
+        } else {
+            p.diasSemComida++;
+        }
+
+        // Verifica se bebeu
+        if (distribuicao[p.id]?.agua) {
+            p.diasSemAgua = 0;
+        } else {
+            p.diasSemAgua++;
+        }
+    });
+
+    // Limpa as seleções para o próximo dia
+    selecoesTemporariasDiario.distribuicao = {};
+}
+
+
 export function habilitarDiario() {
     ui.elementosDOM.botaoAbrirDiario.disabled = state.getEstado().fimDeJogo;
     if (!state.getEstado().fimDeJogo) {
@@ -94,14 +147,18 @@ function processarConsequenciasInicioDia() {
 }
 
 export function avancarParaProximoDia() {
-    // ... (Lógica de aplicar distribuição e iniciar expedição)
+    // 1. Aplica as decisões do diário ANTES de avançar o dia
+    aplicarDistribuicaoSuprimentos();
+    // (Futuramente, a lógica para iniciar expedição viria aqui também)
 
+    // 2. Avança o dia
     if (state.getEstado().dia === 0) {
         state.getEstado().dia = 1;
     } else {
         state.getEstado().dia++;
     }
 
+    // 3. Processa consequências e continua o fluxo
     if (!processarConsequenciasInicioDia()) return;
 
     registrarLog(`--- Início do Dia ${state.getEstado().dia} ---`);

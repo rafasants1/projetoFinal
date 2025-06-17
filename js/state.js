@@ -59,6 +59,20 @@ export function getEstado() {
 }
 
 /**
+ * Registra a seleção de distribuição de um recurso para um personagem.
+ * @param {string} idPersonagem 
+ * @param {string} tipoRecurso 'comida' ou 'agua'
+ * @param {boolean} selecionado 
+ */
+export function atualizarSelecaoDistribuicao(idPersonagem, tipoRecurso, selecionado) {
+    if (!estadoJogo.selecoesTemporariasDiario.distribuicao[idPersonagem]) {
+        estadoJogo.selecoesTemporariasDiario.distribuicao[idPersonagem] = {};
+    }
+    estadoJogo.selecoesTemporariasDiario.distribuicao[idPersonagem][tipoRecurso] = selecionado;
+}
+
+
+/**
  * Encontra um personagem pelo ID.
  * @param {string} idPersonagem
  * @returns {object|undefined} O objeto do personagem ou undefined.
