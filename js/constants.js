@@ -6,7 +6,7 @@
 
 // Regras de Sobrevivência
 export const DIAS_PARA_MORRER_FOME_SEDE = 5;
-export const DURACAO_EXPEDICAO_DIAS = 3; // <-- ADICIONADO
+export const DURACAO_EXPEDICAO_DIAS = 3;
 
 // Configurações de Moral
 export const MORAL_INICIAL = 80;
@@ -32,6 +32,15 @@ export const PERSONAGENS_INICIAIS = [
     { id: 'maryjane', nome: 'Mary Jane (Filha)', vivo: true, diasSemComida: 0, diasSemAgua: 0, status: 'Saudável', moral: MORAL_INICIAL, emExpedicao: false }
 ];
 
-export const TODOS_ITENS_POSSIVEIS = ['Machado', 'Rádio Portátil', 'Kit Médico', 'Mapa da Região', 'Lanterna', 'Fita Adesiva', 'Sementes Misteriosas', 'Remédio Duvidoso', 'Pé de Cabra', 'Munição (3)'];
+// --- LISTA DE ITENS ATUALIZADA ---
+export const TODOS_ITENS_POSSIVEIS = [
+    'Machado', 'Rádio Portátil', 'Kit Médico', 'Mapa da Região', 'Lanterna', 
+    'Fita Adesiva', 'Sementes Misteriosas', 'Remédio Duvidoso', 'Pé de Cabra', 'Munição (3)',
+    'Peça de Motor', 'Lata de Feijão', 'Coleira de Cachorro', 'Violão Velho', 'Garrafa de Uísque'
+];
 export const NUM_ITENS_INICIAIS = 3;
-export const ITENS_TROCAVEIS = ['Machado', 'Rádio Portátil', 'Kit Médico', 'Mapa da Região', 'Lanterna', 'Fita Adesiva', 'Pé de Cabra', 'Munição (3)'];
+export const ITENS_TROCAVEIS = [
+    'Machado', 'Rádio Portátil', 'Kit Médico', 'Mapa da Região', 'Lanterna', 'Fita Adesiva', 
+    'Pé de Cabra', 'Munição (3)', 'Peça de Motor', 'Lata de Feijão', 'Coleira de Cachorro', 
+    'Violão Velho', 'Garrafa de Uísque'
+];
