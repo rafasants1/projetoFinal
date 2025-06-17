@@ -14,33 +14,7 @@ const getRandomPersonagemNoAbrigo = (state) => {
 
 
 export const eventos = [
-    // --- Eventos Antigos ---
-    {
-        id: 'barulho_estranho', titulo: 'Barulho Estranho Lá Fora',
-        descricao: 'Você ouve um barulho arranhando a porta do abrigo. Parece ser algo grande. O que fazer?',
-        urlImagem: 'https://placehold.co/350x180/4A3B31/FF6B6B?text=BARULHO+SUSPEITO&font=specialelite',
-        escolhas: [
-            { 
-                texto: 'Investigar com Cuidado', 
-                acao: (ctx) => {
-                    const { state, ui, registrarLog, proximaAcao } = ctx;
-                    const estado = state.getEstado();
-                    const comidaEncontrada = Math.floor(Math.random() * 2) + 1; 
-                    estado.comida += comidaEncontrada;
-                    registrarLog(`Encontraram ${comidaEncontrada} de comida abandonada!`);
-                    const textoResultado = `Era apenas um animal selvagem que fugiu, mas deixou para trás ${comidaEncontrada} unidades de comida!`;
-                    ui.mostrarMensagemResultado('Sorte!', textoResultado, proximaAcao);
-                }
-            },
-            { 
-                texto: 'Ignorar e Reforçar a Porta', 
-                acao: (ctx) => {
-                    ctx.registrarLog('Decidiram ignorar o barulho e reforçar a porta.');
-                    ctx.ui.mostrarMensagemResultado('Precaução', 'Vocês reforçaram a porta. A noite passou em silêncio.', ctx.proximaAcao);
-                }
-            }
-        ]
-    },
+   
 
     // --- NOVOS EVENTOS DETALHADOS ---
 
