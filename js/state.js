@@ -34,16 +34,16 @@ export function inicializarJogo(dificuldade) {
 
     switch (dificuldade) {
         case 'facil':
-            estadoJogo.comida = 25;
-            estadoJogo.agua = 25;
-            break;
-        case 'medio':
-            estadoJogo.comida = 18;
-            estadoJogo.agua = 18;
-            break;
-        case 'dificil':
             estadoJogo.comida = 12;
             estadoJogo.agua = 12;
+            break;
+        case 'medio':
+            estadoJogo.comida = 7;
+            estadoJogo.agua = 7;
+            break;
+        case 'dificil':
+            estadoJogo.comida = 5;
+            estadoJogo.agua = 5;
             break;
     }
 

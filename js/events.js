@@ -16,7 +16,7 @@ const getRandomPersonagemNoAbrigo = (state) => {
 export const eventos = [
    
 
-    // --- NOVOS EVENTOS DETALHADOS ---
+    
 
     // 1. A Caminhoneira Canina
     {
@@ -62,7 +62,7 @@ export const eventos = [
                 acao: (ctx) => {
                     const { state, ui, registrarLog, proximaAcao } = ctx;
                     if (Math.random() < 0.4) {
-                        state.getEstado().agua += 3;
+                        state.getEstado().agua += 2;
                         state.atualizarMoralTodosAbrigo(5);
                         registrarLog('Pediram ajuda a Sarajane e ela foi simpática.');
                         ui.mostrarMensagemResultado('Gesto de Bondade', 'Ela entende a situação. "Tempos difíceis." Ela te dá 3 de água antes de partir. A moral de todos sobe (+5).', proximaAcao);

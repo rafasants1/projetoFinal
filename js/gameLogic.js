@@ -106,7 +106,6 @@ function dispararEventoAleatorio() {
     const evento = eventosDisponiveis[Math.floor(Math.random() * eventosDisponiveis.length)];
     state.setEventoAtual(evento);
     
-    // --- CORREÇÃO APLICADA AQUI ---
     // Configura e mostra o modal do evento
     ui.elementosDOM.displayTituloEvento.textContent = evento.titulo;
     ui.elementosDOM.displayDescricaoEvento.textContent = evento.descricao; // <-- LINHA ADICIONADA
