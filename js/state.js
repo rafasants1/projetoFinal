@@ -25,6 +25,8 @@ export function inicializarJogo(dificuldade) {
         diaRetornoExpedicao: null,
         dificuldade: dificuldade,
         indicePaginaAtualDiario: 0,
+        progressoSarajane: 0,
+        progressoMaya: 0,
         ordemPaginasDiario: ['distribuicao', 'expedicao', 'fimDia'],
         selecoesTemporariasDiario: {
             distribuicao: {},
@@ -51,9 +53,7 @@ export function inicializarJogo(dificuldade) {
     estadoJogo.inventario = itensEmbaralhados.slice(0, NUM_ITENS_INICIAIS);
 }
 
-/**
- * Retorna uma cópia do estado atual do jogo para evitar mutações diretas.
- */
+
 export function getEstado() {
     return estadoJogo;
 }

@@ -94,7 +94,7 @@ function dispararEventoAleatorio() {
     }
 
     const eventosDisponiveis = eventos.filter(evento => {
-        return true; 
+        return evento.condição(state); 
     });
 
     if (eventosDisponiveis.length === 0 || Math.random() < 0.20) {
@@ -108,9 +108,8 @@ function dispararEventoAleatorio() {
     
     // Configura e mostra o modal do evento
     ui.elementosDOM.displayTituloEvento.textContent = evento.titulo;
-    ui.elementosDOM.displayDescricaoEvento.textContent = evento.descricao; // <-- LINHA ADICIONADA
-    ui.elementosDOM.placeholderImagemEvento.innerHTML = `<img src="${evento.urlImagem}" alt="${evento.titulo}">`; // <-- LINHA ADICIONADA
-    
+    ui.elementosDOM.displayDescricaoEvento.textContent = evento.descricao; 
+    ui.elementosDOM.placeholderImagemEvento.innerHTML = `<img src="${evento.urlImagem}" alt="${evento.titulo}">`;
     ui.elementosDOM.displayEscolhasEvento.innerHTML = '';
     evento.escolhas.forEach(escolha => {
         const botao = document.createElement('button');
@@ -142,8 +141,8 @@ function lidarComRetornoExpedicao() {
 
     // Lógica simples de sucesso/falha
     if (Math.random() > 0.3) { // 70% chance de sucesso
-        const comidaEncontrada = Math.floor(Math.random() * 5) + 2;
-        const aguaEncontrada = Math.floor(Math.random() * 5) + 2;
+        const comidaEncontrada = Math.floor(Math.random() * 4);
+        const aguaEncontrada = Math.floor(Math.random() * 4);
         estado.comida += comidaEncontrada;
         estado.agua += aguaEncontrada;
         registrarLog(`Sucesso! Trouxe ${comidaEncontrada} de comida e ${aguaEncontrada} de água.`);
