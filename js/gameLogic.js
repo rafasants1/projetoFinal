@@ -94,7 +94,7 @@ function dispararEventoAleatorio() {
     }
 
     const eventosDisponiveis = eventos.filter(evento => {
-        return evento.condição(state); 
+        return evento.condicao(state); 
     });
 
     if (eventosDisponiveis.length === 0 || Math.random() < 0.20) {
