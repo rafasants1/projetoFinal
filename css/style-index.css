@@ -1,0 +1,15 @@
+/* --- Tela Splash --- */
+#imagem-splash {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  border: 3px solid #4a3b31;
+}
+
+#tela-splash p {
+  margin: 1.5rem 0; /* my-6 */
+  font-size: 1.125rem; /* text-lg */
+}
