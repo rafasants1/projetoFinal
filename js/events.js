@@ -372,8 +372,7 @@ export const eventos = [
         ]
     },
     
-    // ... e assim por diante até o final
-    // 10. A Grande Fuga (EVENTO FINAL)
+    
     {
         id: 'sarajane_final_escape',
         titulo: 'A Grande Fuga',

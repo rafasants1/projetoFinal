@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fim de Jogo - 60 Segundos no Abrigo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="tela-fim-de-jogo" class="tela oculto">
+        <div class="conteudo-tela">
+            <h2>FIM DE JOGO</h2>
+            <p id="mensagem-fim-de-jogo"></p>
+            <p class="contagem-dias">Dias Sobrevividos: <span id="contagem-final-dias">0</span></p>
+        </div>
+        <button id="botao-reiniciar-jogo">Jogar Novamente</button>
+    </div>
+
+    <div id="tela-vitoria" class="tela oculto">
+        <div class="conteudo-tela">
+            <h2>VITÓRIA!</h2>
+            <p id="mensagem-vitoria"></p>
+            <p class="contagem-dias">Dias Sobrevividos: <span id="contagem-final-dias-vitoria">0</span></p>
+        </div>
+        <button id="botao-jogar-novamente-vitoria">Jogar Novamente</button>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

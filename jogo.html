@@ -3,66 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>60 Segundos no Abrigo</title>
-    
+    <title>Sobrevivendo - 60 Segundos no Abrigo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div id="tela-splash" class="tela">
-        <div class="conteudo-tela">
-            <h1>60 Segundos no Abrigo</h1>
-            <img id="imagem-splash" src="https://placehold.co/800x450/3A2E27/FFD700?text=60+SEGUNDOS+NO+ABRIGO&font=specialelite" alt="[Imagem de Bem-Vindo ao Abrigo]"
-                 onerror="this.onerror=null; this.src='https://placehold.co/800x450/2D2D2D/FFFFFF?text=Erro+ao+carregar+imagem';">
-            <p>A sirene tocou. O mundo lá fora acabou. A luta pela sobrevivência começa AGORA.</p>
-        </div>
-        <div class="botoes-tela-inicial">
-            <button id="botao-iniciar">Iniciar Jogo</button>
-            <button id="botao-configuracoes">Configurações</button>
-            <button id="botao-creditos">Créditos</button>
-        </div>
-    </div>
-
-    <div id="tela-configuracoes" class="tela oculto">
-        <div class="conteudo-tela">
-            <h2>Configurações</h2>
-            <p>(Placeholder)</p>
-        </div>
-        <button class="voltar-para-splash">Voltar</button>
-    </div>
-
-    <div id="tela-creditos" class="tela oculto">
-        <div class="conteudo-tela">
-            <h2>Créditos</h2>
-            <p>(Placeholder)</p>
-        </div>
-        <button class="voltar-para-splash">Voltar</button>
-    </div>
-
-    <div id="tela-dificuldade" class="tela oculto">
-        <div class="container-dificuldade">
-            <h2>Escolha a Dificuldade</h2>
-            <div class="opcoes-dificuldade">
-                <button class="botao-dificuldade" data-difficulty="facil">
-                    <img src="img/maya.png" alt="Maya - Fácil">
-                    <span>Fácil</span>
-                </button>
-                <button class="botao-dificuldade" data-difficulty="medio">
-                    <img src="img/sarajane.png" alt="Sarajane - Médio">
-                    <span>Médio</span>
-                </button>
-                <button class="botao-dificuldade" data-difficulty="dificil">
-                    <img src="img/lobinho.png" alt="Lobinho - Difícil">
-                    <span>Difícil</span>
-                </button>
-            </div>
-            <button id="voltar-splash-da-dificuldade">Voltar</button>
-        </div>
-    </div>
-
-    <div id="tela-jogo" class="tela oculto">
+    <div id="tela-jogo" class="tela">
         <div class="conteudo-tela">
             <div class="hud-jogo">
                 <h2>Dia: <span id="contador-dias">1</span></h2>
@@ -97,17 +44,20 @@
                 <p class="instrucao-diario">Selecione quem receberá suprimentos hoje.</p>
                 <div id="container-personagens-dist-diario"></div>
             </div>
+
             <div id="pagina-diario-expedicao" class="pagina-diario">
                 <h3 class="titulo-pagina-diario">Preparar Expedição - Dia <span id="diario-exp-num-dia"></span></h3>
                 <p>Escolha UM membro para enviar ao exterior. Eles ficarão fora por alguns dias.</p>
                 <p class="aviso-expedicao">(Personagens doentes ou feridos terão menos chance de sucesso e mais risco de piorar ou morrer.)</p>
                 <div id="container-personagens-exp-diario"></div>
             </div>
+
             <div id="pagina-diario-fim-dia" class="pagina-diario">
                 <h3 class="titulo-pagina-diario">Encerrar Dia <span id="diario-fim-num-dia"></span></h3>
                 <p class="instrucao-diario">Todas as ações para este dia foram definidas. Você está pronto para enfrentar a noite e ver o que o amanhã reserva?</p>
                 <img src="https://placehold.co/400x200/5A4A3A/F0E0D0?text=PREPARAR+PARA+A+NOITE...&font=specialelite" alt="[Imagem Preparar para Noite]">
             </div>
+            
             <div class="navegacao-diario">
                 <button id="botao-diario-anterior" disabled>&lt;&lt; Página Anterior</button>
                 <button id="botao-diario-proximo">Próxima Página &gt;&gt;</button>
@@ -136,25 +86,7 @@
             <button id="botao-continuar-resultado">Continuar</button>
         </div>
     </div>
-
-    <div id="tela-fim-de-jogo" class="tela oculto">
-        <div class="conteudo-tela">
-            <h2>FIM DE JOGO</h2>
-            <p id="mensagem-fim-de-jogo"></p>
-            <p class="contagem-dias">Dias Sobrevividos: <span id="contagem-final-dias">0</span></p>
-        </div>
-        <button id="botao-reiniciar-jogo">Jogar Novamente</button>
-    </div>
-
-    <div id="tela-vitoria" class="tela oculto">
-        <div class="conteudo-tela">
-            <h2>VITÓRIA!</h2>
-            <p id="mensagem-vitoria"></p>
-            <p class="contagem-dias">Dias Sobrevividos: <span id="contagem-final-dias-vitoria">0</span></p>
-        </div>
-        <button id="botao-jogar-novamente-vitoria">Jogar Novamente</button>
-    </div>
-
+    
     <script type="module" src="js/main.js"></script>
 
 </body>
