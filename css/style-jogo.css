@@ -21,9 +21,44 @@
 @media (min-width: 768px) { /* md: */
     .hud-jogo { flex-direction: row; }
 }
-.secao-jogo {
-  margin-bottom: 1rem;
+
+.grid-jogo-principal {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 1.5rem;
+    text-align: left;
+    margin-top: 1.5rem;
 }
+
+@media (min-width: 768px) { /* md: */
+    .grid-jogo-principal {
+        /* Define a two-column layout on larger screens */
+        grid-template-columns: 1fr 2fr; 
+        grid-template-areas:
+            "inventario familia"
+            "diario diario";
+    }
+
+    /* Assign JS-generated sections to grid areas */
+    .grid-jogo-principal .secao-jogo:nth-child(1) { grid-area: inventario; }
+    .grid-jogo-principal .secao-jogo:nth-child(2) { grid-area: familia; }
+    .grid-jogo-principal .secao-jogo:nth-child(3) { grid-area: diario; }
+}
+
+.secao-jogo {
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid #4a3a2a;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.secao-jogo h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #5a4a3a;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
 #lista-inventario {
   text-align: left;
   max-height: 7rem; /* max-h-28 */
