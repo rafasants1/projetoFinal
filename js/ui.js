@@ -40,14 +40,15 @@ export const elementosDOM = {
     displayPersonagens: document.getElementById('display-personagens'),
     displayListaInventario: document.getElementById('lista-inventario'),
     displayLogEventos: document.getElementById('log-eventos'),
-    displayTransicaoDia: document.getElementById('display-transicao-dia'), // <-- ADICIONADO
-    // ... e assim por diante para todos os outros elementos.
+    displayTransicaoDia: document.getElementById('display-transicao-dia'),
+    // Displays de Modais
     displayTituloEvento: document.getElementById('titulo-evento'),
     displayDescricaoEvento: document.getElementById('descricao-evento'),
     displayEscolhasEvento: document.getElementById('escolhas-evento'),
     placeholderImagemEvento: document.getElementById('placeholder-imagem-evento'),
     displayTituloResultado: document.getElementById('titulo-resultado'),
     displayTextoResultado: document.getElementById('texto-resultado'),
+    // Displays de Fim de Jogo
     displayContagemFinalDias: document.getElementById('contagem-final-dias'),
     displayMensagemFimJogo: document.getElementById('mensagem-fim-de-jogo'),
     displayMensagemVitoria: document.getElementById('mensagem-vitoria'),
@@ -61,18 +62,29 @@ let callbackResultadoAtual = null;
  * @param {string} idTela O ID da tela a ser mostrada.
  */
 export function mostrarTela(idTela) {
+    // CORREÇÃO: Lista explícita de todas as telas e modais para evitar erros.
     const todasAsTelas = [
         elementosDOM.telaSplash, elementosDOM.telaConfiguracoes, elementosDOM.telaCreditos,
         elementosDOM.telaDificuldade, elementosDOM.telaJogo, elementosDOM.telaFimDeJogo,
         elementosDOM.telaVitoria, elementosDOM.modalEvento, elementosDOM.sobreposicaoModalResultado,
         elementosDOM.telaTransicaoDia, elementosDOM.modalDiarioAcoes
     ];
+
+    // Itera sobre a lista segura de telas e as oculta.
     todasAsTelas.forEach(t => {
-        if (t) t.classList.add('oculto');
+        // Verifica se o elemento realmente existe no DOM antes de tentar manipulá-lo.
+        if (t) {
+            t.classList.add('oculto');
+        }
     });
+
+    // Mostra apenas a tela solicitada.
     const telaParaMostrar = document.getElementById(idTela);
-    if (telaParaMostrar) telaParaMostrar.classList.remove('oculto');
+    if (telaParaMostrar) {
+        telaParaMostrar.classList.remove('oculto');
+    }
 }
+
 
 /**
  * Atualiza todos os displays da interface do jogo com base no estado atual.
@@ -92,8 +104,6 @@ export function atualizarInterface(estado) {
         if (!personagem.vivo) divPersonagem.classList.add('morto');
         else if (personagem.emExpedicao) divPersonagem.classList.add('em-expedicao');
         
-        // Adicione classes de status e moral aqui...
-
         divPersonagem.innerHTML = `
             <h4>${personagem.nome} ${personagem.emExpedicao ? `(Em Expedição - Ret. Dia ${estado.diaRetornoExpedicao})` : ""}</h4>
             <p>Status: <span>${personagem.status}</span></p>
@@ -149,3 +159,10 @@ export function fecharMensagemResultado() {
     }
     callbackResultadoAtual = null; // Limpa o callback
 }
+/**
+ * Exibe um modal de evento com título, descrição e opções de escolha.
+ * @param {string} titulo - Título do evento.
+ * @param {string} descricao - Descrição do evento.
+ * @param {Array} escolhas - Lista de escolhas disponíveis.
+ * @param {string} imagemUrl - URL da imagem do evento (opcional).
+ */

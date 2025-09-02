@@ -7,11 +7,16 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
     
+    <!-- Links para todas as folhas de estilo utilizadas no projeto -->
     <link rel="stylesheet" href="css/geral.css">
-<link rel="stylesheet" href="css/style-index.css">
+    <link rel="stylesheet" href="css/style-index.css">
+    <link rel="stylesheet" href="css/style-dificuldade.css">
+    <link rel="stylesheet" href="css/style-jogo.css">
+    <link rel="stylesheet" href="css/style-fim.css">
 </head>
 <body>
 
+    <!-- Tela Inicial -->
     <div id="tela-splash" class="tela">
         <div class="conteudo-tela">
             <h1>60 Segundos no Abrigo</h1>
@@ -26,6 +31,7 @@
         </div>
     </div>
 
+    <!-- Tela de Configurações -->
     <div id="tela-configuracoes" class="tela oculto">
         <div class="conteudo-tela">
             <h2>Configurações</h2>
@@ -34,6 +40,7 @@
         <button class="voltar-para-splash">Voltar</button>
     </div>
 
+    <!-- Tela de Créditos -->
     <div id="tela-creditos" class="tela oculto">
         <div class="conteudo-tela">
             <h2>Créditos</h2>
@@ -42,20 +49,21 @@
         <button class="voltar-para-splash">Voltar</button>
     </div>
 
+    <!-- Tela de Dificuldade -->
     <div id="tela-dificuldade" class="tela oculto">
         <div class="container-dificuldade">
             <h2>Escolha a Dificuldade</h2>
             <div class="opcoes-dificuldade">
                 <button class="botao-dificuldade" data-difficulty="facil">
-                    <img src="img/maya.png" alt="Maya - Fácil">
+                    <img src="https://placehold.co/160x160/a5d6a7/000000?text=Maya" alt="Maya - Fácil">
                     <span>Fácil</span>
                 </button>
                 <button class="botao-dificuldade" data-difficulty="medio">
-                    <img src="img/sarajane.png" alt="Sarajane - Médio">
+                    <img src="https://placehold.co/160x160/ffcc80/000000?text=Sarajane" alt="Sarajane - Médio">
                     <span>Médio</span>
                 </button>
                 <button class="botao-dificuldade" data-difficulty="dificil">
-                    <img src="img/lobinho.png" alt="Lobinho - Difícil">
+                    <img src="https://placehold.co/160x160/ef9a9a/000000?text=Lobinho" alt="Lobinho - Difícil">
                     <span>Difícil</span>
                 </button>
             </div>
@@ -63,32 +71,48 @@
         </div>
     </div>
 
+    <!-- Tela Principal do Jogo (COM A ESTRUTURA CORRIGIDA) -->
     <div id="tela-jogo" class="tela oculto">
         <div class="conteudo-tela">
+            <!-- HUD com informações do dia e recursos -->
             <div class="hud-jogo">
                 <h2>Dia: <span id="contador-dias">1</span></h2>
                 <div class="display-recurso">Comida: <span id="contador-comida">0</span></div>
                 <div class="display-recurso">Água: <span id="contador-agua">0</span></div>
             </div>
-            <div class="secao-jogo">
-                <h3>Inventário</h3>
-                <ul id="lista-inventario"></ul>
+
+            <!-- CORREÇÃO: Contêiner de grid adicionado para organizar as seções abaixo -->
+            <div class="grid-jogo-principal">
+                <!-- Seção de Inventário -->
+                <div class="secao-jogo">
+                    <h3>Inventário</h3>
+                    <ul id="lista-inventario"></ul>
+                </div>
+
+                <!-- Seção da Família -->
+                <div class="secao-jogo">
+                    <h3>Membros da Família</h3>
+                    <div id="display-personagens"></div>
+                </div>
+
+                <!-- CORREÇÃO: Seção do Diário agora está dentro de uma div .secao-jogo para alinhar ao grid -->
+                <div class="secao-jogo">
+                    <h3>Diário do Abrigo</h3>
+                    <div id="log-eventos"></div>
+                </div>
             </div>
-            <div class="secao-jogo">
-                <h3>Membros da Família</h3>
-                <div id="display-personagens"></div>
-            </div>
-            <h3>Diário do Abrigo</h3>
-            <div id="log-eventos"></div>
         </div>
+        <!-- Botões de Ação do Jogo -->
         <div id="container-botoes-acao">
              <button id="botao-abrir-diario">Diário 📖</button>
         </div>
     </div>
 
+    <!-- Modal do Diário de Ações -->
     <div id="modal-diario-acoes" class="modal-overlay oculto">
         <div class="conteudo-diario-acoes">
             <button id="botao-fechar-diario" title="Fechar Diário">X</button>
+            <!-- Página de Distribuição -->
             <div id="pagina-diario-distribuicao" class="pagina-diario pagina-ativa">
                 <h3 class="titulo-pagina-diario">Distribuir Suprimentos - Dia <span id="diario-dist-num-dia"></span></h3>
                 <div class="dist-recursos">
@@ -98,17 +122,20 @@
                 <p class="instrucao-diario">Selecione quem receberá suprimentos hoje.</p>
                 <div id="container-personagens-dist-diario"></div>
             </div>
+            <!-- Página de Expedição -->
             <div id="pagina-diario-expedicao" class="pagina-diario">
                 <h3 class="titulo-pagina-diario">Preparar Expedição - Dia <span id="diario-exp-num-dia"></span></h3>
                 <p>Escolha UM membro para enviar ao exterior. Eles ficarão fora por alguns dias.</p>
                 <p class="aviso-expedicao">(Personagens doentes ou feridos terão menos chance de sucesso e mais risco de piorar ou morrer.)</p>
                 <div id="container-personagens-exp-diario"></div>
             </div>
+            <!-- Página de Fim de Dia -->
             <div id="pagina-diario-fim-dia" class="pagina-diario">
                 <h3 class="titulo-pagina-diario">Encerrar Dia <span id="diario-fim-num-dia"></span></h3>
                 <p class="instrucao-diario">Todas as ações para este dia foram definidas. Você está pronto para enfrentar a noite e ver o que o amanhã reserva?</p>
                 <img src="https://placehold.co/400x200/5A4A3A/F0E0D0?text=PREPARAR+PARA+A+NOITE...&font=specialelite" alt="[Imagem Preparar para Noite]">
             </div>
+            <!-- Navegação do Diário -->
             <div class="navegacao-diario">
                 <button id="botao-diario-anterior" disabled>&lt;&lt; Página Anterior</button>
                 <button id="botao-diario-proximo">Próxima Página &gt;&gt;</button>
@@ -117,6 +144,7 @@
         </div>
     </div>
 
+    <!-- Modal de Evento Aleatório -->
     <div id="modal-evento" class="modal-overlay oculto"> 
         <div class="conteudo-modal-evento">
             <h3 id="titulo-evento"></h3>
@@ -126,10 +154,12 @@
         </div>
     </div>
 
+    <!-- Tela de Transição de Dia -->
     <div id="tela-transicao-dia" class="modal-overlay overlay-escura oculto">
         <h1 id="display-transicao-dia">Dia 1</h1>
     </div>
 
+    <!-- Modal de Resultado de Ação -->
     <div id="sobreposicao-modal-resultado" class="modal-overlay overlay-media oculto">
         <div id="conteudo-mensagem-resultado">
             <h3 id="titulo-resultado">Título do Resultado</h3>
@@ -138,6 +168,7 @@
         </div>
     </div>
 
+    <!-- Tela de Fim de Jogo (Derrota) -->
     <div id="tela-fim-de-jogo" class="tela oculto">
         <div class="conteudo-tela">
             <h2>FIM DE JOGO</h2>
@@ -147,6 +178,7 @@
         <button id="botao-reiniciar-jogo">Jogar Novamente</button>
     </div>
 
+    <!-- Tela de Vitória -->
     <div id="tela-vitoria" class="tela oculto">
         <div class="conteudo-tela">
             <h2>VITÓRIA!</h2>
@@ -156,6 +188,7 @@
         <button id="botao-jogar-novamente-vitoria">Jogar Novamente</button>
     </div>
 
+    <!-- Script principal do jogo -->
     <script type="module" src="js/main.js"></script>
 
 </body>
