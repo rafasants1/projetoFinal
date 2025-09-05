@@ -1,0 +1,92 @@
+/* css/style-minigame.css */
+#tela-minigame {
+    justify-content: flex-start;
+}
+
+.hud-minigame {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.5);
+    border-bottom: 2px solid #FFD700;
+}
+.hud-minigame h1 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+#temporizador, #inventario-minigame {
+    font-size: 1.2rem;
+    font-family: 'Special Elite', cursive;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+#area-jogo {
+    width: 100%;
+    max-width: 800px;
+    /* Mapa aumentado */
+    height: 75vh; 
+    margin: 20px auto;
+    background-image: url('../img/wood-floor.png');
+    background-repeat: repeat;
+    border: 10px solid #8B4513;
+    position: relative;
+    overflow: hidden;
+}
+
+#jogador {
+    width: 35px;
+    height: 35px;
+    background-color: #4682B4;
+    background-image: url('https://placehold.co/35x35/4682B4/FFFFFF?text=P');
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition: box-shadow 0.2s;
+    z-index: 10;
+}
+#jogador.carregando {
+    box-shadow: 0 0 15px 5px #FFD700;
+}
+
+#bunker {
+    width: 120px;
+    height: 120px;
+    background-color: #3d3d3d;
+    /* Correção: removida a imagem de fundo que sobrepunha o texto */
+    border: 5px solid #1e1e1e;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.5rem;
+    color: #f0e0d0;
+    text-align: center; /* Garante que o texto fique bem alinhado */
+    z-index: 5;
+}
+
+.item {
+    width: 32px;
+    height: 32px;
+    background-color: #D2691E;
+    border: 2px solid #f0e0d0;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+}
+
+.obstaculo {
+    position: absolute;
+    background-color: #A0522D;
+    border: 3px solid #5C2F0E;
+    z-index: 5;
+}
+
+.instrucoes-minigame {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}

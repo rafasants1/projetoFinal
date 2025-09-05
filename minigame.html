@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coleta Rápida!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/geral.css">
+    <link rel="stylesheet" href="css/style-minigame.css">
+</head>
+<body>
+    <div id="tela-minigame" class="tela">
+        <div class="hud-minigame">
+            <h1>Corra! Pegue tudo que puder!</h1>
+            <div id="temporizador">Tempo: <span id="tempo-restante">60</span>s</div>
+            <div id="inventario-minigame">Itens no Abrigo: <span id="itens-coletados">0</span></div>
+        </div>
+        <div id="area-jogo">
+            <div id="jogador"></div>
+            <div id="bunker">ABRIGO</div>
+            </div>
+        <div class="instrucoes-minigame">
+            <p>Use as <strong>Setas do Teclado</strong> ou <strong>W, A, S, D</strong> para se mover.</p>
+            <p>Pegue os itens e leve-os para a área do <strong>ABRIGO</strong> antes que o tempo acabe!</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/minigame.js"></script>
+</body>
+</html>

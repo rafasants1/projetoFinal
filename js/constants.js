@@ -1,8 +1,4 @@
-// js/constants.js
 
-/**
- * Contém todas as constantes e configurações base do jogo.
- */
 
 // Regras de Sobrevivência
 export const DIAS_PARA_MORRER_FOME_SEDE = 5;
